@@ -88,6 +88,7 @@ static KEYWORD_RECORD keywords[] = {
   {CALL, "CALL", 0},
   {CALLER, "CALLER", 1},
   {CACHE, "CACHE", 1},
+  {CARDINALITY, "CARDINALITY", 1},
   {CAPACITY, "CAPACITY", 1},
   {CASCADE, "CASCADE", 0},
   {CASCADED, "CASCADED", 0},

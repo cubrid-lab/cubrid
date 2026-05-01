@@ -11829,6 +11829,7 @@ pt_upd_domain_info (PARSER_CONTEXT * parser, PT_NODE * arg1, PT_NODE * arg2, PT_
 
     case PT_FUNCTION_HOLDER:
       if (node->info.function.function_type == F_ELT || node->info.function.function_type == F_INSERT_SUBSTRING
+	  || node->info.function.function_type == F_CARDINALITY
 	  || node->info.function.function_type == F_JSON_OBJECT || node->info.function.function_type == F_JSON_ARRAY
 	  || node->info.function.function_type == F_JSON_INSERT || node->info.function.function_type == F_JSON_REMOVE
 	  || node->info.function.function_type == F_JSON_MERGE
@@ -18659,6 +18660,21 @@ pt_evaluate_function_w_args (PARSER_CONTEXT * parser, FUNC_CODE fcode, DB_VALUE 
 	{
 	  return 0;
 	}
+      break;
+
+    case F_CARDINALITY:
+      if (DB_IS_NULL (args[0]))
+	{
+	  db_make_null (result);
+	  break;
+	}
+
+      if (!TP_IS_SET_TYPE (DB_VALUE_DOMAIN_TYPE (args[0])))
+	{
+	  return 0;
+	}
+
+      db_make_int (result, db_set_size (db_get_set (args[0])));
       break;
 
     case F_JSON_ARRAY:
