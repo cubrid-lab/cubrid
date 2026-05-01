@@ -31,6 +31,7 @@
 #include "parser_message.h"
 #include "system_parameter.h"
 #include "message_catalog.h"
+#include "parser.h"
 
 #if defined (SUPPRESS_STRLEN_WARNING)
 #define strlen(s1)  ((int) strlen(s1))
@@ -1900,8 +1901,10 @@ csql_yyerror (const char *s)
 	  char *msg_context = NULL;
 	  int fixed_len = 11 * 2; /* maximum size of printed line number and
 				     column number */
+	  int reserved_hint_len = pt_is_reserved_word (token_val)
+				  ? (strlen (token_val) + 80) : 0;
 	  int msg_size = fixed_len + next_ptr_len + strlen (before_token)
-			 + strlen (token_val) + 4;
+			 + strlen (token_val) + 4 + reserved_hint_len;
 			 /* 4 = 3 more characters when printing before_token
 			  * and 'token_val' + the string terminator */
 
@@ -1973,6 +1976,14 @@ csql_yyerror (const char *s)
                      strcat (msg, end_ptr);
                    }
                } 
+	    }
+
+	  /* If the unexpected token is a reserved word, add a helpful hint */
+	  if (pt_is_reserved_word (token_val))
+	    {
+	      strcat (msg, ". Note: '");
+	      strcat (msg, token_val);
+	      strcat (msg, "' is a reserved word; enclose it in double-quotes or choose a different name");
 	    }
 	}
       else
