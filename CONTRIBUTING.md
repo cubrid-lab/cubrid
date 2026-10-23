@@ -38,3 +38,19 @@ You can also refer to
   * [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github).
   
 You can also send us an email to contact at cubrid.org.
+
+## Code Review and CI Policy
+
+The same pull request review criteria apply regardless of implementation
+tool, including human-only work, OpenCode, Codex, Claude Code, ChatGPT,
+Copilot and other agents. Optional AI reviews are advisory, not mandatory
+tool-specific approvals. The existing CLA and `develop` base remain.
+
+Use the repository's required GitHub Actions, Jenkins and CircleCI checks
+(as configured for the change) as authoritative validation at the final PR
+head. Local tests are recommended and should be reported accurately but
+are not an extra merge condition. A maintainer reviews behavior, safety,
+tests, compatibility and open findings, and makes the final merge decision.
+Changes to CI credentials, authentication, security controls or publishing
+require independent security and permission assessment. Do not weaken
+existing branch protections or project-specific tests.
