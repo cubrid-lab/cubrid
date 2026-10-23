@@ -184,6 +184,25 @@ Use `free_and_init(ptr)` (never bare `free`), `db_private_alloc(thread_p, size)`
 
 PR title must match `^\[[A-Z]+-\d+\]\s.+` (e.g. `[CBRD-12345] Fix buffer overflow in btree`). CLA required before merge.
 
+## Pull Request Review and Merge Policy
+
+Apply the **same** code review standards to human changes and work using
+OpenCode, Codex, Claude Code, ChatGPT, Copilot or any other tool. Oracle,
+Copilot and other AI reviews may be consulted but are optional **advisory**
+material; they are not alternate or mandatory approval routes.
+
+- Scope one focused PR with tests and affected documentation. Keep the
+  existing CLA and CBRD issue/title conventions unchanged.
+- Use this repository's configured required CI at the final PR head for
+  authoritative verification: GitHub Actions static checks, Jenkins
+  builds, and CircleCI SQL/shell tests as applicable. Local runs are
+  encouraged but not a separate mandatory gate.
+- Review correctness, memory safety, SQL behavior, security, regressions
+  and maintainability. Independently assess sensitive CI permissions,
+  authentication and release/publishing changes.
+- Resolve or disposition findings, check required CI and allow the
+  responsible maintainer to decide whether to merge to `develop`.
+
 ## Anti-Patterns (This Project)
 
 - **Never** use `free()` directly — use `free_and_init()` to nullify
