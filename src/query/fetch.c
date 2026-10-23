@@ -4387,6 +4387,7 @@ fetch_peek_dbval (THREAD_ENTRY * thread_p, REGU_VARIABLE * regu_var, val_descr *
 
 	case F_INSERT_SUBSTRING:
 	case F_ELT:
+	case F_CARDINALITY:
 	case F_JSON_ARRAY:
 	case F_JSON_ARRAY_APPEND:
 	case F_JSON_ARRAY_INSERT:
