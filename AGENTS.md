@@ -1,5 +1,10 @@
 # AGENTS.md — CUBRID Database Engine
 
+## CUBRID Lab issue title and triage baseline
+
+Follow [the shared organization writing policy](https://github.com/cubrid-lab/.github/blob/main/docs/ISSUE_PR_COMMIT_STANDARD.md) for issues: write a clear type-only title (`feat:`, `bug:`, `docs:`, etc.) with no mandatory module scope, and state a verifiable problem or outcome. Keep confirmed evidence separate from assumptions. Triage checks validity, duplicates, scope, relative priority and size. This does **not** replace CUBRID engine's existing ticket-prefixed PR title, CLA, review and CI rules; retain those local requirements and use Conventional Commits only where they are supported. Avoid agent narration and personal commentary in issue descriptions.
+
+
 
 ## Overview
 
