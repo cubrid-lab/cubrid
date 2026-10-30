@@ -4,7 +4,7 @@ There are many ways to contribute, from submitting a bug report and a feature re
 
 ## GitHub issues and change descriptions within cubrid-lab
 
-For GitHub issues maintained in this repository, use a type-only title such as `feat: ...` or `bug: ...` (no module scope required). Explain the observed problem or desired outcome, include available reproduction evidence and verifiable acceptance criteria. Maintainer triage checks validity, duplicates, scope, relative priority and size; PR validation concerns the actual change and tests. See the [shared cubrid-lab writing standard](https://github.com/cubrid-lab/.github/blob/main/docs/ISSUE_PR_COMMIT_STANDARD.md).
+For GitHub issues maintained in this repository, give every title a type-only prefix: `feat:`, `bug:`, `docs:`, `test:`, `chore:` or `ci:` (no module scope required). Explain the observed problem or desired outcome, include available reproduction evidence and verifiable acceptance criteria. Maintainer triage checks validity, duplicates, scope, relative priority and size; PR validation concerns the actual change and tests. See the [shared cubrid-lab writing standard](https://github.com/cubrid-lab/.github/blob/main/docs/ISSUE_PR_COMMIT_STANDARD.md).
 
 **This does not change the CUBRID engine's JIRA issue process or its existing ticket-prefixed PR title, CLA and review rules.**
 
