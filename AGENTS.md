@@ -235,6 +235,15 @@ material; they are not alternate or mandatory approval routes.
 
 ## Human-readable communication (all agents)
 
+The canonical rule is section 6 of the organization standard,
+[Explanations in code, tests, reviews and agent-written text](https://github.com/cubrid-lab/.github/blob/main/docs/ISSUE_PR_COMMIT_STANDARD.md#6-explanations-in-code-tests-reviews-and-agent-written-text).
+It covers source comments, unit and shell test names, PR descriptions and
+review replies: say what the code does, why it matters and the invariant
+involved before any CBRD ticket, issue number or test code. The engine's own
+rules keep precedence, including the `[CBRD-nnnnn]` PR title format, the CLA,
+code style and the GitHub Actions, Jenkins and CircleCI checks. The notes
+below are the local application of that rule.
+
 Use this rule for text authored or edited by Codex, Claude Code, OpenCode,
 ChatGPT, Copilot, or any other agent. It applies to issues, PRs, reviews,
 comments, checklists, status updates, commit summaries, release notes,
