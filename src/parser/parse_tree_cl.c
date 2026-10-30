@@ -18434,6 +18434,7 @@ pt_function_is_allowed_as_function_index (const PT_NODE * func)
       return false;
     case F_INSERT_SUBSTRING:
     case F_ELT:
+    case F_CARDINALITY:
     case F_JSON_CONTAINS:
     case F_JSON_CONTAINS_PATH:
     case F_JSON_DEPTH:
