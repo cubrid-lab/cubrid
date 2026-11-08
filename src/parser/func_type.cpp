@@ -204,6 +204,11 @@ func_all_signatures sig_of_insert_substring =
   //{0, {3, PT_TYPE_INTEGER, PT_TYPE_INTEGER, PT_GENERIC_TYPE_STRING}, {}}, //for insert(?, i, i, 'char or anything else')
 };
 
+func_all_signatures sig_ret_int_arg_collection =
+{
+  {PT_TYPE_INTEGER, {PT_GENERIC_TYPE_SEQUENCE}, {}},
+};
+
 func_all_signatures sig_ret_json_arg_r_jkey_jval_or_empty =
 {
   {PT_TYPE_JSON, {}, {PT_GENERIC_TYPE_STRING, PT_GENERIC_TYPE_JSON_VAL}},
@@ -437,6 +442,8 @@ get_signatures (FUNC_CODE ft)
       return &sig_of_insert_substring;
     case F_ELT:
       return &sig_of_elt;
+    case F_CARDINALITY:
+      return &sig_ret_int_arg_collection;
     case F_BENCHMARK:
       return &sig_of_benchmark;
     case F_JSON_ARRAY:

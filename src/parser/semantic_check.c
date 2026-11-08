@@ -5455,6 +5455,7 @@ pt_find_partition_column_count_func (PT_NODE * func, PT_NODE ** name_node)
     {
     case F_INSERT_SUBSTRING:
     case F_ELT:
+    case F_CARDINALITY:
     case F_JSON_ARRAY:
     case F_JSON_ARRAY_APPEND:
     case F_JSON_ARRAY_INSERT:

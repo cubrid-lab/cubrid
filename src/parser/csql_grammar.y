@@ -1502,6 +1502,7 @@ BEGIN_SUPPRESS_WARNING_BISON_FLEX
 %token <cptr> BUFFER
 %token <cptr> CALLER
 %token <cptr> CACHE
+%token <cptr> CARDINALITY
 %token <cptr> CAPACITY
 %token <cptr> CHARACTER_SET_
 %token <cptr> CHARSET
@@ -15598,6 +15599,11 @@ reserved_func
                     $$ = parser_make_func_with_arg_count (this_parser, F_ELT, $3, 1, 0);
                     PARSER_SAVE_ERR_CONTEXT ($$, @$.buffer_pos)
 		}}
+	| CARDINALITY '(' expression_ ')'
+		{{
+		    $$ = parser_make_func_with_arg_count (this_parser, F_CARDINALITY, $3, 1, 1);
+		    PARSER_SAVE_ERR_CONTEXT ($$, @$.buffer_pos)
+		}}
 	| POSITION '(' expression_ IN_ expression_ ')'
 		{{
 			$$ = parser_make_expression (this_parser, PT_POSITION, $3, $5, NULL);
@@ -20546,6 +20552,7 @@ identifier
 	| BUFFER                 {{ SET_CPTR_2_PTNAME($$, $1, @$.buffer_pos);  }}
 	| CALLER                 {{ SET_CPTR_2_PTNAME($$, $1, @$.buffer_pos);  }}
 	| CACHE                  {{ SET_CPTR_2_PTNAME($$, $1, @$.buffer_pos);  }}
+	| CARDINALITY            {{ SET_CPTR_2_PTNAME($$, $1, @$.buffer_pos);  }}
 	| CAPACITY               {{ SET_CPTR_2_PTNAME($$, $1, @$.buffer_pos);  }}
 	| CHARACTER_SET_         {{ SET_CPTR_2_PTNAME($$, $1, @$.buffer_pos);  }}
 	| CHARSET                {{ SET_CPTR_2_PTNAME($$, $1, @$.buffer_pos);  }}

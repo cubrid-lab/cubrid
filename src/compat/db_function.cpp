@@ -122,6 +122,8 @@ fcode_get_uppercase_name (FUNC_CODE ftype)
       return "INSERT";
     case F_ELT:
       return "ELT";
+    case F_CARDINALITY:
+      return "CARDINALITY";
     case F_BENCHMARK:
       return "BENCHMARK";
     case F_JSON_ARRAY:
@@ -278,6 +280,8 @@ fcode_get_lowercase_name (FUNC_CODE ftype)
       return "insert";
     case F_ELT:
       return "elt";
+    case F_CARDINALITY:
+      return "cardinality";
     case F_BENCHMARK:
       return "benchmark";
     case F_JSON_ARRAY:

@@ -1657,7 +1657,8 @@ partition_get_value_from_regu_var (PRUNING_CONTEXT * pinfo, const REGU_VARIABLE 
 		goto error;
 	      }
 	  }
-	else if (regu->value.funcp->ftype == F_ELT || regu->value.funcp->ftype == F_INSERT_SUBSTRING)
+	else if (regu->value.funcp->ftype == F_ELT || regu->value.funcp->ftype == F_INSERT_SUBSTRING
+		 || regu->value.funcp->ftype == F_CARDINALITY)
 	  {
 	    /* 
 	     * Exceptionally use partition_get_value_from_inarith for these specific functions

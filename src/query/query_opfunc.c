@@ -215,6 +215,8 @@ static int qdata_insert_substring_function (THREAD_ENTRY * thread_p, FUNCTION_TY
 
 static int qdata_elt (THREAD_ENTRY * thread_p, FUNCTION_TYPE * function_p, VAL_DESCR * val_desc_p, OID * obj_oid_p,
 		      QFILE_TUPLE tuple);
+static int qdata_cardinality (THREAD_ENTRY * thread_p, FUNCTION_TYPE * function_p, VAL_DESCR * val_desc_p,
+			      OID * obj_oid_p, QFILE_TUPLE tuple);
 static int qdata_benchmark (THREAD_ENTRY * thread_p, FUNCTION_TYPE * function_p, VAL_DESCR * val_desc_p,
 			    OID * obj_oid_p, QFILE_TUPLE tuple);
 
@@ -6918,6 +6920,9 @@ qdata_evaluate_function (THREAD_ENTRY * thread_p, regu_variable_node * function_
     case F_ELT:
       return qdata_elt (thread_p, funcp, val_desc_p, obj_oid_p, tuple);
 
+    case F_CARDINALITY:
+      return qdata_cardinality (thread_p, funcp, val_desc_p, obj_oid_p, tuple);
+
     case F_BENCHMARK:
       return qdata_benchmark (thread_p, funcp, val_desc_p, obj_oid_p, tuple);
 
@@ -8520,6 +8525,40 @@ fast_exit:
 
 error_exit:
   return error_status;
+}
+
+static int
+qdata_cardinality (THREAD_ENTRY * thread_p, FUNCTION_TYPE * function_p, VAL_DESCR * val_desc_p, OID * obj_oid_p,
+		   QFILE_TUPLE tuple)
+{
+  DB_VALUE *arg_value = NULL;
+  DB_TYPE arg_type;
+  int error_status = NO_ERROR;
+
+  assert (function_p != NULL && function_p->value != NULL);
+  assert (function_p->operand != NULL && function_p->operand->next == NULL);
+
+  error_status = fetch_peek_dbval (thread_p, &function_p->operand->value, val_desc_p, NULL, obj_oid_p, tuple, &arg_value);
+  if (error_status != NO_ERROR)
+    {
+      return error_status;
+    }
+
+  if (DB_IS_NULL (arg_value))
+    {
+      db_make_null (function_p->value);
+      return NO_ERROR;
+    }
+
+  arg_type = DB_VALUE_DOMAIN_TYPE (arg_value);
+  if (!TP_IS_SET_TYPE (arg_type))
+    {
+      er_set (ER_ERROR_SEVERITY, ARG_FILE_LINE, ER_QPROC_INVALID_DATATYPE, 0);
+      return ER_QPROC_INVALID_DATATYPE;
+    }
+
+  db_make_int (function_p->value, db_set_size (db_get_set (arg_value)));
+  return NO_ERROR;
 }
 
 //
