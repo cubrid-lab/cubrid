@@ -19,4 +19,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
+          # Create the repository-local intake label once if this mirror has none.
+          if ! gh api "repos/$GITHUB_REPOSITORY/labels/status%3A%20needs%20triage" >/dev/null 2>&1; then
+            gh label create 'status: needs triage' --repo "$GITHUB_REPOSITORY" --color '5319e7' --description 'New issue awaiting maintainer triage' || true
+          fi
           gh issue edit "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --add-label 'status: needs triage'
